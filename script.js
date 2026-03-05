@@ -2,18 +2,23 @@
  * Question 1
  */
 const question1 = () => {
-  const sidebarButton = document.getElementById("sidebar");
-  const sidebar = document.getElementById("sidebar-button");
+  const sidebar = document.getElementById("sidebar");
+  const sidebarButton = document.getElementById("sidebar-button");
 
-  button.addEventListener("click", () => {
-  sidebar.classList.toggle("opened");
+  sidebarButton.addEventListener("click", (event) => {
+    const sidebarIsOpen = sidebar.classList.contains("opened");
 
-  if (sidebar.classList.contains("opened")) {
-    button.textContent = "‹";
-  } else {
-    button.textContent = "›";
-  }
-});
+    if (sidebarIsOpen) {
+      // Close sidebar
+      sidebar.classList.remove("opened");
+      sidebarButton.textContent = "›";
+    } else {
+      // Open sidebar
+      sidebar.classList.add("opened");
+      sidebarButton.textContent = "‹";
+    }
+  });
+};
 
 
   // Listen for a "click" event on the sidebar's button.
@@ -23,44 +28,31 @@ const question1 = () => {
   //   https://www.javatpoint.com/javascript-events
   //
   // addEventListener will then call the function we provide
-  // whenever the button is clicked.
-  sidebarButton.addEventListener("click", (event) => {
-    const sidebarIsOpen = __YOUR_CODE_HERE__;
-
-    if (sidebarIsOpen) {
-      // Close the sidebar
-      /** YOUR CODE HERE */
-      
-    } else {
-      // Open the sidebar
-      /** YOUR CODE HERE */
-    }
-  });
-};
+  // whenever the button is clicked.  
 
 /**
  * Question 2
  */
 const question2 = () => {
-  const taskName = document.getElementById("add-todo");
-  const addTodoButton = document.getElementById("task-name");
+  const addTodoButton = document.getElementById("add-todo");
+  const taskName = document.getElementById("task-name");
   const todoListUl = document.getElementById("todo-list");
 
-addButton.addEventListener("click", () => {
-  const task = taskInput.value;
+  addTodoButton.addEventListener("click", () => {
+    const task = taskName.value;
 
-  if (task === "") {
-    return;
-  }
+    // Prevent empty tasks
+    if (task.trim() === "") {
+      return;
+    }
 
-  const newItem = document.createElement("li");
-  newItem.textContent = task;
+    const newItem = document.createElement("li");
+    newItem.textContent = task;
 
-  todoList.append(newItem);
+    todoListUl.append(newItem);
 
-  taskInput.value = "";
-});
-
+    taskName.value = "";
+  });
 };
 
 /**
@@ -71,20 +63,15 @@ const question3 = () => {
   const lastNameInput = document.getElementById("last-name");
   const message = document.getElementById("message");
 
-
-  // using this function is reccomended but not necessary
   const updateMessage = () => {
-    const fist = firstNameInput.value;
+    const first = firstNameInput.value;
     const last = lastNameInput.value;
 
-    message.textContent = 'Hello ${first} ${last}!';
-
+    message.textContent = `Hello ${first} ${last}!`;
   };
 
-  /** YOUR CODE HERE */
-  firstNameInput.addEventListener("input", updateGreeting);
-  lastNameInput.addEventListener("input", updateGreeting);
-
+  firstNameInput.addEventListener("input", updateMessage);
+  lastNameInput.addEventListener("input", updateMessage);
 };
 
 /**
